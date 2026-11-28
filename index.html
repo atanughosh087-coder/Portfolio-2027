@@ -16,7 +16,7 @@
   --muted:#66726b;
   --green:#2d4a2b;        /* primary sober green */
   --green-d:#1d3320;
-  --green-l:#f6f1d3;
+  --green-l:#fff;
   --green-m:#ebbf45;
   --rule:rgba(22,36,29,.14);
   --accent:var(--green);  /* swapped per selected client */
@@ -38,7 +38,7 @@ section{position:relative}
 nav.top{position:fixed;inset:0 0 auto 0;z-index:50;height:68px;display:flex;align-items:stretch;justify-content:space-between;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
 nav.top .l,nav.top .r{display:flex;align-items:center}
 nav.top a.item{display:flex;align-items:center;gap:10px;padding:0 20px;font:400 14px var(--mono);text-transform:uppercase;transition:background .3s,color .3s}
-nav.top a.item:hover{background:var(--green-l)}
+nav.top a.item:hover{background:rgba(45,74,43,.08)}
 nav.top a.item.on{background:var(--green);color:#fff}
 nav.top .logo{display:flex;align-items:center;padding:0 22px;color:var(--green-d)}
 .contact-btn{margin:0 16px;padding:12px 20px;border:1px solid var(--ink);font:400 14px var(--mono);text-transform:uppercase;transition:.3s}
@@ -56,7 +56,7 @@ nav.top .logo{display:flex;align-items:center;padding:0 22px;color:var(--green-d
 .pw:hover .pop,.pw:focus-within .pop{transform:scale(1)}
 @media (pointer:fine){body.hero-on,body.hero-on *{cursor:none!important}}
 .hero{min-height:100svh;display:grid;place-items:center;padding:150px 24px 90px;text-align:center;position:relative;overflow:hidden}
-.grid{position:absolute;inset:104px 0 0;pointer-events:none;background-image:linear-gradient(to right,rgba(22,36,29,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(22,36,29,.05) 1px,transparent 1px);background-size:100px 100px;background-position:center top;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.grid{display:none;position:absolute;inset:104px 0 0;pointer-events:none;background-image:linear-gradient(to right,rgba(22,36,29,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(22,36,29,.05) 1px,transparent 1px);background-size:100px 100px;background-position:center top;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
 .ruler{position:absolute;left:0;right:0;top:68px;height:36px;border-bottom:1px solid var(--rule);overflow:hidden;background:#fff;z-index:3}
 .rt{position:absolute;left:0;top:0;height:100%;width:100%;will-change:transform}
 .rt b{position:absolute;top:0;width:1px;height:12px;background:var(--ink)}
@@ -203,14 +203,14 @@ body.ring-on .ring{display:block}
 @media(max-width:800px){.board{height:auto;display:grid;gap:22px;justify-items:center}.note{position:relative;left:auto;right:auto;top:auto}}
 
 /* ---------- FOOTER ---------- */
-footer{background:var(--green-l);padding:64px 32px 30px;border-top:1px solid var(--green-m)}
+footer{background:#fff;padding:64px 32px 30px;border-top:1px solid var(--rule)}
 .fin{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-end}
 .fin h3{font:400 clamp(28px,3.4vw,42px)/1.1 var(--serif);letter-spacing:-.02em;max-width:14ch}
 .fin h3 em{color:var(--green)}
 .soc{display:flex;gap:10px;flex-wrap:wrap}
 .soc a{padding:12px 20px;border:1px solid var(--green-d);font:400 14px var(--mono);text-transform:uppercase;color:var(--green-d);transition:.3s}
 .soc a:hover{background:var(--green-d);color:#fff}
-.legal{max-width:1100px;margin:48px auto 0;padding-top:18px;border-top:1px solid var(--green-m);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted)}
+.legal{max-width:1100px;margin:48px auto 0;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted)}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
 </style>
@@ -326,6 +326,7 @@ const CLIENTS=[
   {id:'iicf', name:'IICF',            cat:'Non-profit',    art:'noon',     accent:'#4f7d2a', desc:'Placeholder: a short line about the work done for this client.', projects:['Project One','Project Two','Project Three']},
   {id:'kal',  name:'Kalyani',         cat:'Industrial',    art:'river',    accent:'#6b7f3a', desc:'Placeholder: a short line about the work done for this client.', projects:['Project One','Project Two','Project Three']},
   {id:'pcpa', name:'PCPA',            cat:'Public Affairs',art:'observer', accent:'#8a4b2a', desc:'Placeholder: a short line about the work done for this client.', projects:['Project One','Project Two','Project Three']},
+  {id:'jhulki',name:'Jhulki',       cat:'Fashion · Gujarat',art:'door', accent:'#8a3a4a', desc:'Placeholder: a short line about the work done for this client.', projects:['Landing Page','Project Two','Project Three']},
   {id:'namo', name:'Nation with Namo',cat:'Campaign',      art:'storm',    accent:'#1d3320', desc:'Placeholder: a short line about the work done for this client.', projects:['Project One','Project Two','Project Three']}
 ];
 /* ====== Higgsfield sheets + exact crop boxes (from the spec) ====== */
@@ -361,7 +362,7 @@ const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches, fine=matchMe
 const sec=document.getElementById('projects'),shelf=document.getElementById('shelf'),stage=document.getElementById('stage'),
   tabsEl=document.getElementById('tabs'),ind=tabsEl.querySelector('.ind'),capLines=[...document.querySelectorAll('#cap .capline')],
   play=document.getElementById('play'),ring=document.getElementById('ring'),detail=document.getElementById('detail');
-const N=CLIENTS.length,COPIES=3,M=N*COPIES,EASE='cubic-bezier(.2,.8,.2,1)',EASE2='cubic-bezier(.76,0,.18,1)';
+const N=CLIENTS.length,COPIES=1,M=N*COPIES,EASE='cubic-bezier(.2,.8,.2,1)',EASE2='cubic-bezier(.76,0,.18,1)';
 const sm=x=>x*x*(3-2*x), mod=(a,n)=>((a%n)+n)%n;
 Object.values(SHEET).forEach(v=>{const i=new Image();i.src=v[0]});          /* preload */
 let H,ws,d,gap,W=innerWidth;
@@ -380,10 +381,10 @@ for(let v=0;v<M;v++){const c=CLIENTS[v%N],el=document.createElement('div');el.cl
   el.addEventListener('click',()=>{if(dragged||isOpen)return;if(Math.abs(t.r)<.5)openDetail();else T=Math.round(T+t.r)})}
 /* tabs */
 const tabBtns=CLIENTS.map((c,i)=>{const b=document.createElement('button');b.className='lbl';b.textContent=c.name;
-  b.onclick=()=>{let dlt=mod(i-Math.round(T),N);if(dlt>N/2)dlt-=N;T=Math.round(T)+dlt};tabsEl.appendChild(b);return b});
+  b.onclick=()=>{T=i};tabsEl.appendChild(b);return b});
 function moveInd(){const b=tabBtns[active];if(!b)return;ind.style.width=b.offsetWidth+'px';ind.style.transform=`translateX(${b.offsetLeft}px)`}
 
-let s=N,T=N,hover=-1,active=-1,dragged=false,dragging=false,isOpen=false,tiltX=0,tiltY=0,onCover=false,mx=-999,my=-999,cx=-999,cy=-999,inSec=false;
+let s=0,T=0,hover=-1,active=-1,dragged=false,dragging=false,isOpen=false,tiltX=0,tiltY=0,onCover=false,mx=-999,my=-999,cx=-999,cy=-999,inSec=false;
 /* caption swap */
 function setCaption(c,dir,first){
   const txt=[c.name,`${c.cat} / ${c.projects.length} projects`,c.projects.join('  ·  ')];
@@ -408,15 +409,14 @@ function frame(now){
   const dt=Math.min(.05,(now-last)/1000);last=now;if(!vis&&!isOpen)return;
   const k=reduce?1:(dragging?18:5.2);
   s+=(T-s)*(1-Math.exp(-k*dt));if(Math.abs(T-s)<1e-4)s=T;
-  if(Math.abs(s)>4*N){const sh=Math.round(s/N)*N;s-=sh;T-=sh}
-  const a=mod(Math.round(s),N);if(a!==active)setActive(a,Math.sign(T-s)||1,active<0);
+  const a=Math.max(0,Math.min(N-1,Math.round(s)));if(a!==active)setActive(a,Math.sign(T-s)||1,active<0);
   const R=sec.getBoundingClientRect(),cyS=R.top+R.height/2;
   /* tilt */
   onCover=inSec&&!isOpen&&Math.abs(mx-W/2)<.55*d&&Math.abs(my-cyS)<.55*H&&Math.abs(T-s)<.3;
   const tyT=onCover?(mx-W/2)/(.55*d)*9:(inSec?(mx-W/2)/W*5:0),txT=onCover?-(my-cyS)/(H/2)*6:0,kt=reduce?1:1-Math.exp(-7*dt);
   tiltY+=(tyT-tiltY)*kt;tiltX+=(txT-tiltX)*kt;
   tapes.forEach(t=>{
-    let r=mod(t.v-s+M/2,M)-M/2;t.r=r;
+    let r=t.v-s;t.r=r;
     const o=sm(Math.max(0,1-Math.abs(r))),tg=(hover===t.v&&Math.abs(r)>.5&&!isOpen)?1:0;
     t.lift+=(tg-t.lift)*(reduce?1:1-Math.exp(-12*dt));
     const x=r*(ws+gap)+(d-ws+1.6*gap)*(Math.abs(r)<1?(r+Math.sin(Math.PI*r)/Math.PI)/2:Math.sign(r)*.5);
@@ -436,7 +436,7 @@ function frame(now){
 requestAnimationFrame(frame);
 
 /* inputs */
-const step=n=>{T=Math.round(T)+n};
+const step=n=>{T=Math.max(0,Math.min(N-1,Math.round(T)+n))};
 document.getElementById('pv').onclick=()=>step(-1);document.getElementById('nx').onclick=()=>step(1);
 play.onclick=()=>openDetail();
 addEventListener('keydown',e=>{
@@ -446,7 +446,7 @@ addEventListener('keydown',e=>{
   else if(e.key==='Enter'&&document.activeElement===document.body&&Math.abs(T-s)<.3)openDetail()});
 sec.addEventListener('wheel',e=>{if(isOpen)return;
   if(Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;                 /* keep normal vertical page scroll */
-  e.preventDefault();T+=e.deltaX/(ws+gap)*.5;clearTimeout(wheelT);wheelT=setTimeout(()=>{T=Math.round(T)},160)},{passive:false});
+  e.preventDefault();T=Math.max(0,Math.min(N-1,T+e.deltaX/(ws+gap)*.5));clearTimeout(wheelT);wheelT=setTimeout(()=>{T=Math.round(T)},160)},{passive:false});
 let x0=0,T0=0;
 shelf.addEventListener('pointerdown',e=>{x0=e.clientX;T0=T;dragged=false;dragging=false});
 /* Chrome can't hit-test the turned-out cover face reliably, so test the cover's footprint geometrically */
@@ -454,7 +454,7 @@ shelf.addEventListener('click',e=>{if(dragged||isOpen)return;const R=sec.getBoun
   if(Math.abs(T-s)<.3&&Math.abs(e.clientX-W/2)<.5*d&&Math.abs(e.clientY-(R.top+R.height/2))<.5*H){e.stopPropagation();openDetail()}},true);
 addEventListener('pointermove',e=>{if(!(e.buttons&1)||x0===null||isOpen)return;const dx=e.clientX-x0;
   if(!dragging&&Math.abs(dx)>5&&e.target.closest&&e.target.closest('#shelf')){dragging=true;dragged=true}
-  if(dragging)T=T0-dx/(ws+gap)});
+  if(dragging)T=Math.max(0,Math.min(N-1,T0-dx/(ws+gap)))});
 addEventListener('pointerup',()=>{if(dragging){T=Math.round(T);dragging=false;setTimeout(()=>dragged=false,0)}});
 /* cursor tracking */
 if(fine){
