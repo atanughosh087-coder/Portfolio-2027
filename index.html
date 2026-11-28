@@ -180,27 +180,44 @@ body.ring-on .ring{display:block}
   .dtitle{font-size:42px}.dsyn{font-size:16px}.detail .closeB{left:16px;top:21px}.detail .dlogo{height:64px}
 }
 
-/* ---------- TESTIMONIALS ---------- */
-.testi{padding:110px 24px 120px;text-align:center;background:#fff}
-.testi .eyebrow{font:400 13px var(--mono);color:var(--green);text-transform:uppercase;margin-bottom:8px}
-.testi h2{font:400 clamp(30px,4vw,48px)/1.1 var(--serif);letter-spacing:-.02em;margin-bottom:60px}
-.board{position:relative;max-width:1000px;height:560px;margin:0 auto}
-.note{position:absolute;width:min(320px,78vw);min-height:330px;padding:28px 26px 24px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;border-radius:4px;cursor:grab;user-select:none;touch-action:none;
-  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 2px 4px rgba(20,50,35,.08),0 28px 48px -22px rgba(20,50,35,.35);
-  transition:box-shadow .3s,transform .5s var(--ease)}
-.note:active{cursor:grabbing}
-.note::before{content:"";position:absolute;inset:0;border-radius:4px;background:linear-gradient(135deg,rgba(255,255,255,.45),transparent 40%,rgba(0,0,0,.04));pointer-events:none}
-.note q{font:400 20px/1.4 var(--serif);quotes:"\201C" "\201D";color:var(--ink);position:relative}
-.who{display:flex;align-items:center;gap:12px;margin-top:26px;position:relative}
-.who i{width:42px;height:42px;border-radius:50%;background:var(--green-d);color:#fff;display:grid;place-items:center;font:600 14px var(--sans);font-style:normal}
-.who b{display:block;font:600 14px var(--sans)}.who small{font:400 12px var(--sans);color:var(--muted)}
-.n1{left:2%;top:0;background:#f5d96b;--r:-4deg}
-.n2{left:34%;top:70px;background:#f6f1d3;--r:3deg}
-.n3{right:2%;top:10px;background:#c3d4f4;--r:-2deg}
-.note{transform:rotate(var(--r))}
-.note:hover{box-shadow:0 2px 4px rgba(20,50,35,.1),0 38px 60px -22px rgba(20,50,35,.45)}
-.hint{margin-top:18px;font:400 12px var(--mono);color:var(--muted);text-transform:uppercase}
-@media(max-width:800px){.board{height:auto;display:grid;gap:22px;justify-items:center}.note{position:relative;left:auto;right:auto;top:auto}}
+/* ---------- TESTIMONIALS (hanging cards) ---------- */
+.testi{background:#fff;padding:110px 5vw 70px;position:relative;overflow:hidden}
+.th{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.th .k{font:600 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.th .k::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.th h2{font:500 clamp(36px,4.6vw,60px)/1.05 var(--sans);letter-spacing:-.035em;margin-top:18px}
+.th h2 span{color:var(--green);opacity:1}
+.th p{max-width:30ch;font:400 14px/1.5 var(--sans);color:var(--muted)}
+.th p b{display:flex;align-items:center;gap:8px;margin-top:14px;font:600 10.5px var(--sans);letter-spacing:.09em;color:var(--green)}
+.th p b::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.line{position:relative;max-width:1200px;height:560px;margin:30px auto 0}
+.line svg.wire{position:absolute;left:0;top:0;width:100%;height:80px;overflow:visible}
+.hang{position:absolute;top:0;width:min(22vw,250px);transform-origin:50% 0;will-change:transform}
+.hang .str{position:absolute;left:50%;top:0;width:1.5px;background:#9aa39c;transform:translateX(-50%)}
+.hang .clip{position:absolute;left:50%;width:14px;height:22px;margin-left:-7px;border-radius:3px;background:linear-gradient(#c9cfc9,#8f978f);box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.card{position:absolute;left:0;right:0;aspect-ratio:3/4.3;perspective:1200px;cursor:pointer}
+.card .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .8s var(--ease)}
+.card.flip .in{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:14px;display:flex;flex-direction:column;overflow:hidden;
+  background:#fbfbf9;box-shadow:0 1px 0 #fff inset,0 2px 6px rgba(20,40,30,.06),0 24px 40px -18px rgba(20,40,30,.28);border:1px solid rgba(22,36,29,.08)}
+.card .b{transform:rotateY(180deg);background:linear-gradient(135deg,#e8f1e4,#f6f1d3 35%,#dfe9f6 65%,#ede3f3)}
+.card .sh{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;opacity:0;transition:opacity .4s;
+  background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.9) 40%,rgba(180,230,200,.8) 48%,rgba(240,220,140,.8) 55%,rgba(190,200,255,.7) 62%,transparent 80%);background-size:250% 250%;background-position:var(--sx,50%) 50%}
+.card:hover .sh{opacity:1}
+.card .top{display:flex;justify-content:space-between;font:600 8.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:2px 2px 10px}
+.card .ph{flex:1;border-radius:10px;display:grid;place-items:center;font:500 clamp(40px,5vw,64px) var(--serif);color:rgba(255,255,255,.95)}
+.card .nm{font:500 clamp(17px,1.6vw,21px)/1.15 var(--sans);letter-spacing:-.02em;margin-top:12px}
+.card .rl{font:400 12px var(--sans);color:var(--muted);margin-top:2px}
+.card .ft{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--rule);font:600 8.5px var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.card .ft i{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal;font-size:11px}
+.card .b q{font:400 clamp(14px,1.3vw,17px)/1.45 var(--serif);color:var(--ink);margin-top:6px;flex:1}
+.card .b .who2{display:flex;align-items:center;gap:10px;font:600 12px var(--sans)}
+.card .b .who2 span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font:500 13px var(--serif)}
+.card .b .who2 small{display:block;font:400 11px var(--sans);color:var(--muted)}
+.tf{max-width:1200px;margin:10px auto 0;display:flex;justify-content:space-between;font:600 10px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:800px){.line{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:40px 16px;padding-top:30px}.line svg.wire{display:none}
+  .hang{position:relative;width:auto;left:auto!important;transform:none!important}.hang .str,.hang .clip{display:none}.card{position:relative;top:0!important}}
+@media(max-width:480px){.line{grid-template-columns:1fr}}
 
 /* ---------- FOOTER ---------- */
 footer{background:#fff;padding:64px 32px 30px;border-top:1px solid var(--rule)}
@@ -208,7 +225,7 @@ footer{background:#fff;padding:64px 32px 30px;border-top:1px solid var(--rule)}
 .fin h3{font:400 clamp(28px,3.4vw,42px)/1.1 var(--serif);letter-spacing:-.02em;max-width:14ch}
 .fin h3 em{color:var(--green)}
 .soc{display:flex;gap:10px;flex-wrap:wrap}
-.soc a{padding:12px 20px;border:1px solid var(--green-d);font:400 14px var(--mono);text-transform:uppercase;color:var(--green-d);transition:.3s}
+.soc a{width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--green-d);border-radius:50%;color:var(--green-d);transition:.3s}.soc svg{width:22px;height:22px}
 .soc a:hover{background:var(--green-d);color:#fff}
 .legal{max-width:1100px;margin:48px auto 0;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted)}
 
@@ -295,23 +312,65 @@ footer{background:#fff;padding:64px 32px 30px;border-top:1px solid var(--rule)}
 <div class="ring" id="ring" aria-hidden="true"><div class="rg"></div><div class="dt"></div><div class="lb">OPEN</div></div>
 
 <section class="testi" id="testimonials">
-  <div class="eyebrow">Kind words</div>
-  <h2>What clients say</h2>
-  <div class="board" id="board">
-    <article class="note n1"><q>An intuitive partner who fits seamlessly into our workflow and removes a lot of unnecessary friction.</q><div class="who"><i>DF</i><div><b>Client Name</b><small>Role, Company</small></div></div></article>
-    <article class="note n2"><q>Significantly sped up our decision process and made delivery predictable. Less time on edits, more time on creativity.</q><div class="who"><i>OC</i><div><b>Client Name</b><small>Role, Company</small></div></div></article>
-    <article class="note n3"><q>The interface is clean and thoughtfully designed. It lets our team focus on ideas instead of getting stuck in tools.</q><div class="who"><i>MR</i><div><b>Client Name</b><small>Role, Company</small></div></div></article>
+  <div class="th">
+    <div><div class="k">Kind words · Clients</div><h2>Meet the people<br><span>behind the feedback.</span></h2></div>
+    <p>Founders, marketers and product teams I’ve worked with, in their own words.<b>08 brands, one standard</b></p>
   </div>
-  <p class="hint">Drag the notes around</p>
+  <div class="line" id="line"><svg class="wire" aria-hidden="true"><path id="wire" fill="none" stroke="#9aa39c" stroke-width="1.5"/></svg>
+    <div class="hang" data-i="0"><div class="str"></div><div class="clip"></div>
+      <div class="card" tabindex="0" role="button" aria-label="Flip testimonial 1"><div class="in">
+        <div class="f"><div class="top"><span>Client · Testimonial</span><span>#01</span></div>
+          <div class="ph" style="background:linear-gradient(160deg,#7fa58a,#7fa58acc)">C1</div>
+          <div class="nm">Client Name</div><div class="rl">Role, Company</div>
+          <div class="ft"><span>Read review</span><i>↗</i></div><div class="sh"></div></div>
+        <div class="b"><div class="top"><span>Review / 01</span><span>★★★★★</span></div>
+          <q>An intuitive partner who fits seamlessly into our workflow and removes a lot of unnecessary friction.</q>
+          <div class="who2"><span style="background:#7fa58a">C1</span><div>Client Name<small>Role, Company</small></div></div><div class="sh"></div></div>
+      </div></div>
+    </div>
+    <div class="hang" data-i="1"><div class="str"></div><div class="clip"></div>
+      <div class="card" tabindex="0" role="button" aria-label="Flip testimonial 2"><div class="in">
+        <div class="f"><div class="top"><span>Client · Testimonial</span><span>#02</span></div>
+          <div class="ph" style="background:linear-gradient(160deg,#d9a93a,#d9a93acc)">C2</div>
+          <div class="nm">Client Name</div><div class="rl">Role, Company</div>
+          <div class="ft"><span>Read review</span><i>↗</i></div><div class="sh"></div></div>
+        <div class="b"><div class="top"><span>Review / 02</span><span>★★★★★</span></div>
+          <q>Significantly sped up our decision process and made delivery predictable. Less time on edits, more time on creativity.</q>
+          <div class="who2"><span style="background:#d9a93a">C2</span><div>Client Name<small>Role, Company</small></div></div><div class="sh"></div></div>
+      </div></div>
+    </div>
+    <div class="hang" data-i="2"><div class="str"></div><div class="clip"></div>
+      <div class="card" tabindex="0" role="button" aria-label="Flip testimonial 3"><div class="in">
+        <div class="f"><div class="top"><span>Client · Testimonial</span><span>#03</span></div>
+          <div class="ph" style="background:linear-gradient(160deg,#6f8fd0,#6f8fd0cc)">C3</div>
+          <div class="nm">Client Name</div><div class="rl">Role, Company</div>
+          <div class="ft"><span>Read review</span><i>↗</i></div><div class="sh"></div></div>
+        <div class="b"><div class="top"><span>Review / 03</span><span>★★★★★</span></div>
+          <q>The interface is clean and thoughtfully designed. It lets our team focus on ideas instead of getting stuck in tools.</q>
+          <div class="who2"><span style="background:#6f8fd0">C3</span><div>Client Name<small>Role, Company</small></div></div><div class="sh"></div></div>
+      </div></div>
+    </div>
+    <div class="hang" data-i="3"><div class="str"></div><div class="clip"></div>
+      <div class="card" tabindex="0" role="button" aria-label="Flip testimonial 4"><div class="in">
+        <div class="f"><div class="top"><span>Client · Testimonial</span><span>#04</span></div>
+          <div class="ph" style="background:linear-gradient(160deg,#a5677a,#a5677acc)">C4</div>
+          <div class="nm">Client Name</div><div class="rl">Role, Company</div>
+          <div class="ft"><span>Read review</span><i>↗</i></div><div class="sh"></div></div>
+        <div class="b"><div class="top"><span>Review / 04</span><span>★★★★★</span></div>
+          <q>Atanu brought structure, taste and calm to a fast-moving launch. Our customers noticed the difference immediately.</q>
+          <div class="who2"><span style="background:#a5677a">C4</span><div>Client Name<small>Role, Company</small></div></div><div class="sh"></div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="tf"><span>The people make the work</span><span>Hover to shimmer · Click / tap to flip</span></div>
 </section>
 
 <footer id="contact">
   <div class="fin">
     <h3>Let’s make something <em>thoughtful</em>.</h3>
     <div class="soc">
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a>
     </div>
   </div>
   <div class="legal lbl"><span>© <span id="yr"></span> Atanu. All rights reserved.</span><a href="#home">Back to top ↑</a></div>
@@ -558,24 +617,31 @@ $('dClose').onclick=closeDetail;
   })(performance.now());
 })();
 
-/* testimonials: drag + bring to front */
+/* testimonials: hanging cards on a wire, swing + shimmer + flip */
 (function(){
-  let z=10,cur=null,ox=0,oy=0;
-  document.querySelectorAll('.note').forEach(n=>{
-    n.addEventListener('pointerdown',e=>{
-      if(innerWidth<=800)return;cur=n;n.style.zIndex=++z;n.style.transition='box-shadow .3s';
-      const bx=n.parentElement.getBoundingClientRect(),nr=n.getBoundingClientRect();
-      n.style.left=(nr.left-bx.left)+'px';n.style.top=(nr.top-bx.top)+'px';n.style.right='auto';
-      ox=e.clientX-nr.left;oy=e.clientY-nr.top;n.setPointerCapture(e.pointerId);
-    });
-    n.addEventListener('pointermove',e=>{
-      if(cur!==n)return;const bx=n.parentElement.getBoundingClientRect();
-      n.style.left=(e.clientX-bx.left-ox)+'px';n.style.top=(e.clientY-bx.top-oy)+'px';
-      n.style.transform='rotate(0deg) scale(1.03)';
-    });
-    const up=()=>{if(cur===n){cur=null;n.style.transition='';n.style.transform=''}};
-    n.addEventListener('pointerup',up);n.addEventListener('pointercancel',up);
-  });
+  const line=document.getElementById('line'),wire=document.getElementById('wire'),hangs=[...line.querySelectorAll('.hang')];
+  const POS=[.13,.38,.63,.88],DROP=[40,90,60,95],calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const st=hangs.map(()=>({a:0,v:0}));let W=0,sag=46;
+  const yAt=x=>{const t=x/W;return 18+4*sag*t*(1-t)};
+  function layout(){W=line.clientWidth;wire.setAttribute('d',`M0 18 Q${W/2} ${18+2*sag} ${W} 18`);
+    hangs.forEach((h,i)=>{const x=POS[i]*W,y=yAt(x),cw=h.offsetWidth,card=h.querySelector('.card');
+      h.style.left=(x-cw/2)+'px';h.style.top=y+'px';h.querySelector('.str').style.height=DROP[i]+'px';
+      h.querySelector('.clip').style.top=(DROP[i]-6)+'px';card.style.top=(DROP[i]+8)+'px';
+      st[i].rest=(i%2?2.5:-2)})}
+  layout();addEventListener('resize',layout);
+  hangs.forEach((h,i)=>{const c=h.querySelector('.card');
+    const flip=()=>{c.classList.toggle('flip');st[i].v+=(Math.random()>.5?1:-1)*60};
+    c.addEventListener('click',flip);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
+    let px=null;
+    c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--sx',((e.clientX-r.left)/r.width*100)+'%');
+      if(px!==null)st[i].v+=(e.clientX-px)*.6;px=e.clientX});
+    c.addEventListener('pointerleave',()=>px=null)});
+  if(calm||matchMedia('(max-width:800px)').matches)return;
+  let last=performance.now();
+  (function f(now){requestAnimationFrame(f);const dt=Math.min(.033,(now-last)/1000);last=now;const tt=now/1000;
+    st.forEach((s,i)=>{const target=s.rest+Math.sin(tt*.9+i*1.7)*1.2;      /* gentle idle sway */
+      s.v+=(-(s.a-target)*28-s.v*3.2)*dt;s.a+=s.v*dt;s.a=Math.max(-18,Math.min(18,s.a));
+      hangs[i].style.transform=`rotate(${s.a}deg)`})})(last);
 })();
 </script>
 </body>
